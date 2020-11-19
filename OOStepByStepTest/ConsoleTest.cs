@@ -6,7 +6,7 @@ namespace OOStepByStepTest
 {
     using OOStepByStep;
     using Xunit;
-
+    /*
     public class ConsoleTest
     {
         [Fact]
@@ -17,10 +17,11 @@ namespace OOStepByStepTest
             Console.SetOut(new StringWriter(fakeOutput));
 
             // when
-            new Class1().Print();
+            new Person("Mike", 21).Introduce();
 
             // then
             Assert.Equal("console\n", fakeOutput.ToString());
         }
     }
+    */
 }
