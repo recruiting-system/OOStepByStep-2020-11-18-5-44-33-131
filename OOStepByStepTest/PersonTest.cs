@@ -15,5 +15,30 @@ namespace OOStepByStepTest
             var expected = "My name is Tom,I am 21 years old.";
             Assert.Equal(expected, actual);
         }
+
+        //[Theory]
+        //[InlineData("Tom", 18)]
+        [Fact]
+        public void Should_return_Tom_18_student()
+        {
+            //given
+            var student = new Student("Tom", 18);
+            //when
+            var actual = student.Introduce();
+            var expected = "My name is Tom,I am 18 years old.I am a student.";
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("Amy", 30)]
+        public void Should_return_Amy_30_student(string name, int age)
+        {
+            //given
+            var teacher = new Teacher(name, age);
+            //when
+            var actual = teacher.Introduce();
+            var expected = "My name is Amy,I am 30 years old.I am a teacher.";
+            Assert.Equal(expected, actual);
+        }
     }
 }
