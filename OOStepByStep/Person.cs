@@ -1,7 +1,12 @@
 ﻿namespace OOStepByStep
 {
     using System;
-    public class Person
+    public interface IIntroduce
+    {
+        public string Introduce();
+    }
+
+    public class Person : IIntroduce
     {
         private string name;
         private int age;
@@ -17,24 +22,24 @@
         }
     }
 
-    public class Student
+    public class Student : Person, IIntroduce
     {
         private string name;
         private int age;
         //private string profession;
-        public Student(string name, int age)
+        public Student(string name, int age) : base(name, age)
         {
             this.name = name;
             this.age = age;
         }
 
-        public new string Introduce()
+        public string Introduce()
         {
             return $"My name is {name},I am {age} years old.I am a student.";
         }
     }
 
-    public class Teacher : Person
+    public class Teacher : Person, IIntroduce
     {
         private string name;
         private int age;
@@ -44,7 +49,7 @@
             this.age = age;
         }
 
-        public new string Introduce()
+        public string Introduce()
         {
             return $"My name is {name},I am {age} years old.I am a teacher.";
         }
