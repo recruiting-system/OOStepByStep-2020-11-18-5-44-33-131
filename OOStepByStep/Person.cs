@@ -66,7 +66,7 @@ public string Introduce();
         public new string Introduce()
         {
             string introduceMessage = (this.SchoolClass != string.Empty) ?
-                $"{base.Introduce()}I am a {profession}.I am in {SchoolClass}."
+                $"{base.Introduce()}I am a {profession} of {SchoolClass}."
                 : $"{base.Introduce()}I am a {profession}.";
             return introduceMessage;
         }
@@ -90,7 +90,7 @@ public string Introduce();
         public new string Introduce()
         {
             string introduceMessage = (this.SchoolClass != string.Empty) ?
-                $"{base.Introduce()}I am a {profession}.I am in {SchoolClass}."
+                $"{base.Introduce()}I am a {profession} of {SchoolClass}."
                 : $"{base.Introduce()}I am a {profession}.";
             return introduceMessage;
         }

@@ -51,7 +51,7 @@ namespace OOStepByStepTest
             class1.AddTeacher(teacher);
             //when
             var actualTeacher = teacher.Introduce();
-            var expectedTeacher = "My name is Amy,I am 30 years old.I am a teacher.I am in class1.";
+            var expectedTeacher = "My name is Amy,I am 30 years old.I am a teacher of class1.";
             Assert.Equal(expectedTeacher, actualTeacher);
         }
 
@@ -65,7 +65,7 @@ namespace OOStepByStepTest
             class1.AddStudent(student);
             //when
             var actualStudent = student.Introduce();
-            var expectedStudent = "My name is Tom,I am 18 years old.I am a student.I am in class1.";
+            var expectedStudent = "My name is Tom,I am 18 years old.I am a student of class1.";
             Assert.Equal(expectedStudent, actualStudent);
         }
 
