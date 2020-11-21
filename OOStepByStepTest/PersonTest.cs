@@ -13,11 +13,10 @@ namespace OOStepByStepTest
             //when
             var actual = person.Introduce();
             var expected = "My name is Tom,I am 21 years old.";
+            //then
             Assert.Equal(expected, actual);
         }
 
-        //[Theory]
-        //[InlineData("Tom", 18)]
         [Fact]
         public void Should_return_Tom_18_student()
         {
@@ -25,6 +24,7 @@ namespace OOStepByStepTest
             var student = new Student("Tom", 18);
             //when
             var actual = student.Introduce();
+            //then
             var expected = "My name is Tom,I am 18 years old.I am a student.";
             Assert.Equal(expected, actual);
         }
@@ -38,6 +38,7 @@ namespace OOStepByStepTest
             //when
             var actual = teacher.Introduce();
             var expected = "My name is Amy,I am 30 years old.I am a teacher.";
+            //then
             Assert.Equal(expected, actual);
         }
 
@@ -52,6 +53,7 @@ namespace OOStepByStepTest
             //when
             var actualTeacher = teacher.Introduce();
             var expectedTeacher = "My name is Amy,I am 30 years old.I am a teacher of class1.";
+            //then
             Assert.Equal(expectedTeacher, actualTeacher);
         }
 
@@ -66,6 +68,7 @@ namespace OOStepByStepTest
             //when
             var actual = student.Introduce();
             var expected = "My name is Tom,I am 18 years old.I am a student of class1.";
+            //then
             Assert.Equal(expected, actual);
         }
 
@@ -76,18 +79,12 @@ namespace OOStepByStepTest
             var class1 = new SchoolClass("class1");
             var teacher = new Teacher("Amy", 30);
             var student1 = new Student("Tom", 18);
-            //var student2 = new Student("Jim", 18);
-            //var student3 = new Student("Jane", 18);
             class1.AddTeacher(teacher);
-            var actual1 = class1.AddStudent(student1);
-            //var actual2 = class1.AddStudent(student2);
-            //class1.AddStudent(student3);
             //when
+            var actual1 = class1.AddStudent(student1);
             var expected1 = $"My name is Amy,I am 30 years old.I am a teacher of class1.Welcome Tom join in class1.\n";
-            //var expected2 = $"My name is Amy,I am 30 years old.I am a teacher of class1.Welcome Tom join in class1.\n" +
-                //$"My name is Tom,I am 18 years old.I am a student of class1.Welcome Jim join in class1.\n";
+            //then
             Assert.Equal(expected1, actual1);
-            //Assert.Equal(expected2, actual2);
         }
     }
 }
