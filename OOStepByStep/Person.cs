@@ -1,12 +1,36 @@
 ﻿namespace OOStepByStep
 {
     using System;
-    public interface IIntroduce
+    using System.Collections.Generic;
+
+    /*
+public interface IIntroduce
+{
+public string Introduce();
+}
+*/
+    public class Class
     {
-        public string Introduce();
+        private Teacher teacher;
+        private List<Student> students;
+        public Class()
+        {
+        }
+
+        public void AddStudent(Student student)
+        {
+            this.students.Add(student);
+            student.Class = $"{this}";
+        }
+
+        public void AddTeacher(Student student)
+        {
+            this.teacher = teacher;
+            teacher.Class = $"{this}";
+        }
     }
 
-    public class Person : IIntroduce
+    public class Person
     {
         private string name;
         private int age;
@@ -16,42 +40,41 @@
             this.age = age;
         }
 
-        public string Introduce()
+        public virtual string Introduce()
         {
             return $"My name is {this.name},I am {this.age} years old.";
         }
     }
 
-    public class Student : Person, IIntroduce
+    public class Student : Person
     {
-        private string name;
-        private int age;
-        //private string profession;
+        private string profession;
         public Student(string name, int age) : base(name, age)
         {
-            this.name = name;
-            this.age = age;
+            this.profession = "student";
         }
 
-        public string Introduce()
+        public string Class { get; set; }
+
+        public new string Introduce()
         {
-            return $"My name is {name},I am {age} years old.I am a student.";
+            return $"{base.Introduce()}I am a {profession}.";
         }
     }
 
-    public class Teacher : Person, IIntroduce
+    public class Teacher : Person
     {
-        private string name;
-        private int age;
+        private string profession;
         public Teacher(string name, int age) : base(name, age)
         {
-            this.name = name;
-            this.age = age;
+            this.profession = "teacher";
         }
 
-        public string Introduce()
+        public string Class { get; set; }
+
+        public new string Introduce()
         {
-            return $"My name is {name},I am {age} years old.I am a teacher.";
+            return $"{base.Introduce()}I am a {profession}.";
         }
     }
 }
