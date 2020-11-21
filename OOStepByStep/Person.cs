@@ -3,31 +3,21 @@
     using System;
     using System.Collections.Generic;
 
-    /*
-public interface IIntroduce
-{
-public string Introduce();
-}
-*/
     public class SchoolClass
     {
         private string name;
-        private Teacher teacher;
+        private Teacher teacher = null;
         private List<Student> students = new List<Student>();
         public SchoolClass(string name)
         {
             this.name = name;
         }
 
-        public void AddStudent(Student student)
+        public string AddStudent(Student student)
         {
             this.students.Add(student);
             student.SchoolClass = this.name;
-            this.teacher.WelcomeNewStudent(student);
-            foreach (Student oldStudent in students)
-            {
-                oldStudent.WelcomeNewStudent(student);
-            }
+            return WelcomeMessage(student);
         }
 
         public void AddTeacher(Teacher teacher)
@@ -36,9 +26,19 @@ public string Introduce();
             teacher.SchoolClass = this.name;
         }
 
-        public string KnowTheClass()
+        public string WelcomeMessage(Student newStudent)
         {
-            return this.name;
+            string studentsWelcome = string.Empty;
+            string teacherWelcome = teacher == null ? string.Empty : $"{this.teacher.WelcomeNewStudent(newStudent)}\n";
+            if (students.Count - 1 != 0)
+            {
+                foreach (Student oldStudent in students)
+                {
+                    studentsWelcome += $"{oldStudent.WelcomeNewStudent(newStudent)}\n";
+                }
+            }
+
+            return teacherWelcome + studentsWelcome;
         }
     }
 
@@ -79,7 +79,7 @@ public string Introduce();
 
         public string WelcomeNewStudent(Student newStudent)
         {
-            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}";
+            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}.";
             return welcomeMessage;
         }
 
@@ -109,7 +109,7 @@ public string Introduce();
 
         public string WelcomeNewStudent(Student newStudent)
         {
-            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}";
+            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}.";
             return welcomeMessage;
         }
 

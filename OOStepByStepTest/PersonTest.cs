@@ -62,27 +62,32 @@ namespace OOStepByStepTest
             //given
             var class1 = new SchoolClass("class1");
             var student = new Student(name, age);
-            class1.AddStudent(student);
+            var welcome = class1.AddStudent(student);
             //when
-            var actualStudent = student.Introduce();
-            var expectedStudent = "My name is Tom,I am 18 years old.I am a student of class1.";
-            Assert.Equal(expectedStudent, actualStudent);
+            var actual = student.Introduce();
+            var expected = "My name is Tom,I am 18 years old.I am a student of class1.";
+            Assert.Equal(expected, actual);
         }
 
-        /*
-        [Theory]
-        [InlineData("Amy", 30)]
-        public void Should_return_name_age_profession_class(string name, int age)
+        [Fact]
+        public void Should_return_welcomeMessage_when_add_new_student()
         {
             //given
             var class1 = new SchoolClass("class1");
-            var teacher = new Teacher(name, age);
+            var teacher = new Teacher("Amy", 30);
+            var student1 = new Student("Tom", 18);
+            //var student2 = new Student("Jim", 18);
+            //var student3 = new Student("Jane", 18);
             class1.AddTeacher(teacher);
+            var actual1 = class1.AddStudent(student1);
+            //var actual2 = class1.AddStudent(student2);
+            //class1.AddStudent(student3);
             //when
-            var actual = teacher.Introduce();
-            var expected = "My name is Amy,I am 30 years old.I am a teacher.I am in class1.";
-            Assert.Equal(expected, actual);
+            var expected1 = $"My name is Amy,I am 30 years old.I am a teacher of class1.Welcome Tom join in class1.\n";
+            //var expected2 = $"My name is Amy,I am 30 years old.I am a teacher of class1.Welcome Tom join in class1.\n" +
+                //$"My name is Tom,I am 18 years old.I am a student of class1.Welcome Jim join in class1.\n";
+            Assert.Equal(expected1, actual1);
+            //Assert.Equal(expected2, actual2);
         }
-        */
     }
 }
