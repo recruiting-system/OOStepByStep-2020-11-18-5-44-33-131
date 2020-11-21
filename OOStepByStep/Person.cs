@@ -9,24 +9,31 @@ public interface IIntroduce
 public string Introduce();
 }
 */
-    public class Class
+    public class SchoolClass
     {
+        private string name;
         private Teacher teacher;
         private List<Student> students;
-        public Class()
+        public SchoolClass(string name)
         {
+            this.name = name;
         }
 
         public void AddStudent(Student student)
         {
             this.students.Add(student);
-            student.Class = $"{this}";
+            student.SchoolClass = this.name;
         }
 
-        public void AddTeacher(Student student)
+        public void AddTeacher(Teacher teacher)
         {
             this.teacher = teacher;
-            teacher.Class = $"{this}";
+            teacher.SchoolClass = this.name;
+        }
+
+        public string KnowTheClass()
+        {
+            return this.name;
         }
     }
 
@@ -54,11 +61,19 @@ public string Introduce();
             this.profession = "student";
         }
 
-        public string Class { get; set; }
+        public string SchoolClass { get; set; } = string.Empty;
 
         public new string Introduce()
         {
-            return $"{base.Introduce()}I am a {profession}.";
+            string introduceMessage = (this.SchoolClass != string.Empty) ?
+                $"{base.Introduce()}I am a {profession}.I am in {SchoolClass}."
+                : $"{base.Introduce()}I am a {profession}.";
+            return introduceMessage;
+        }
+
+        public void AddToClass(SchoolClass schoolClasse)
+        {
+            schoolClasse.AddStudent(this);
         }
     }
 
@@ -70,11 +85,19 @@ public string Introduce();
             this.profession = "teacher";
         }
 
-        public string Class { get; set; }
+        public string SchoolClass { get; set; } = string.Empty;
 
         public new string Introduce()
         {
-            return $"{base.Introduce()}I am a {profession}.";
+            string introduceMessage = (this.SchoolClass != string.Empty) ?
+                $"{base.Introduce()}I am a {profession}.I am in {SchoolClass}."
+                : $"{base.Introduce()}I am a {profession}.";
+            return introduceMessage;
+        }
+
+        public void AddToClass(SchoolClass schoolClass)
+        {
+            schoolClass.AddTeacher(this);
         }
     }
 }
