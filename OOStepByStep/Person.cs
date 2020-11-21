@@ -23,6 +23,11 @@ public string Introduce();
         {
             this.students.Add(student);
             student.SchoolClass = this.name;
+            this.teacher.WelcomeNewStudent(student);
+            foreach (Student oldStudent in students)
+            {
+                oldStudent.WelcomeNewStudent(student);
+            }
         }
 
         public void AddTeacher(Teacher teacher)
@@ -39,17 +44,18 @@ public string Introduce();
 
     public class Person
     {
-        private string name;
-        private int age;
         public Person(string name, int age)
         {
-            this.name = name;
-            this.age = age;
+            this.Name = name;
+            this.Age = age;
         }
+
+        public string Name { get; set; }
+        public int Age { get; set; }
 
         public virtual string Introduce()
         {
-            return $"My name is {this.name},I am {this.age} years old.";
+            return $"My name is {this.Name},I am {this.Age} years old.";
         }
     }
 
@@ -69,6 +75,12 @@ public string Introduce();
                 $"{base.Introduce()}I am a {profession} of {SchoolClass}."
                 : $"{base.Introduce()}I am a {profession}.";
             return introduceMessage;
+        }
+
+        public string WelcomeNewStudent(Student newStudent)
+        {
+            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}";
+            return welcomeMessage;
         }
 
         public void AddToClass(SchoolClass schoolClass)
@@ -93,6 +105,12 @@ public string Introduce();
                 $"{base.Introduce()}I am a {profession} of {SchoolClass}."
                 : $"{base.Introduce()}I am a {profession}.";
             return introduceMessage;
+        }
+
+        public string WelcomeNewStudent(Student newStudent)
+        {
+            string welcomeMessage = $"{base.Introduce()}I am a {profession} of {SchoolClass}.Welcome {newStudent.Name} join in {SchoolClass}";
+            return welcomeMessage;
         }
 
         public void AddToClass(SchoolClass schoolClass)
