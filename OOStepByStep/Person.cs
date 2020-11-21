@@ -13,7 +13,7 @@ public string Introduce();
     {
         private string name;
         private Teacher teacher;
-        private List<Student> students;
+        private List<Student> students = new List<Student>();
         public SchoolClass(string name)
         {
             this.name = name;
@@ -71,9 +71,9 @@ public string Introduce();
             return introduceMessage;
         }
 
-        public void AddToClass(SchoolClass schoolClasse)
+        public void AddToClass(SchoolClass schoolClass)
         {
-            schoolClasse.AddStudent(this);
+            schoolClass.AddStudent(this);
         }
     }
 

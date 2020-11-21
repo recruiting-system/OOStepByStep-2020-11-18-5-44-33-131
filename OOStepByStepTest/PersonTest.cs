@@ -43,6 +43,35 @@ namespace OOStepByStepTest
 
         [Theory]
         [InlineData("Amy", 30)]
+        public void Should_return_name_age_profession_class_teacher(string name, int age)
+        {
+            //given
+            var class1 = new SchoolClass("class1");
+            var teacher = new Teacher(name, age);
+            class1.AddTeacher(teacher);
+            //when
+            var actualTeacher = teacher.Introduce();
+            var expectedTeacher = "My name is Amy,I am 30 years old.I am a teacher.I am in class1.";
+            Assert.Equal(expectedTeacher, actualTeacher);
+        }
+
+        [Theory]
+        [InlineData("Tom", 18)]
+        public void Should_return_name_age_profession_class_student(string name, int age)
+        {
+            //given
+            var class1 = new SchoolClass("class1");
+            var student = new Student(name, age);
+            class1.AddStudent(student);
+            //when
+            var actualStudent = student.Introduce();
+            var expectedStudent = "My name is Tom,I am 18 years old.I am a student.I am in class1.";
+            Assert.Equal(expectedStudent, actualStudent);
+        }
+
+        /*
+        [Theory]
+        [InlineData("Amy", 30)]
         public void Should_return_name_age_profession_class(string name, int age)
         {
             //given
@@ -54,5 +83,6 @@ namespace OOStepByStepTest
             var expected = "My name is Amy,I am 30 years old.I am a teacher.I am in class1.";
             Assert.Equal(expected, actual);
         }
+        */
     }
 }
